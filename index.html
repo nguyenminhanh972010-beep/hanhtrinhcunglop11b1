@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bộ Sưu Tập Cá Nhân</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Thanh điều khiển phía trên -->
+  <header class="navbar">
+    <h1><i class="fa-solid fa-photo-film"></i> Kỷ Niệm Của Tôi</h1>
+    
+    <div class="controls">
+      <!-- Bộ chọn nền -->
+      <div class="bg-picker-container">
+        <label for="bgTypeSelect"><i class="fa-solid fa-palette"></i> Đổi nền:</label>
+        <select id="bgTypeSelect">
+          <option value="preset-1">Hồng Tím Gradient</option>
+          <option value="preset-2">Xanh Biển Gradient</option>
+          <option value="preset-3">Tối Hiện Đại (Dark)</option>
+          <option value="custom-color">Màu Tự Chọn</option>
+          <option value="custom-image">Ảnh Nền Cá Nhân</option>
+        </select>
+        <input type="color" id="customColorPicker" value="#667eea" style="display: none;">
+        <input type="file" id="bgImageInput" accept="image/*" style="display: none;">
+      </div>
+    </div>
+  </header>
+
+  <!-- Danh sách hiển thị Bài đăng -->
+  <main class="container">
+    <div id="mediaGrid" class="media-grid"></div>
+    <div id="emptyState" class="empty-state">
+      <i class="fa-solid fa-images"></i>
+      <p>Chưa có ảnh hoặc video nào. Nhấn nút <strong>+</strong> bên dưới để thêm mới!</p>
+    </div>
+  </main>
+
+  <!-- Nút Dấu Cộng "+" Nổi -->
+  <button id="openModalBtn" class="fab-btn" title="Thêm Ảnh/Video">
+    <i class="fa-solid fa-plus"></i>
+  </button>
+
+  <!-- Popup Form Nhập (Modal) -->
+  <div id="uploadModal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Thêm Kỷ Niệm Mới</h2>
+        <button id="closeModalBtn" class="close-btn">&times;</button>
+      </div>
+      
+      <form id="uploadForm">
+        <div class="form-group">
+          <label>Chọn Tệp (Ảnh hoặc Video):</label>
+          <div class="file-drop-area" id="dropArea">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            <span id="fileSelectText">Nhấn để chọn hoặc kéo thả tệp vào đây</span>
+            <input type="file" id="mediaFileInput" accept="image/*,video/*" required>
+          </div>
+        </div>
+
+        <!-- Xem trước tệp vừa chọn -->
+        <div id="previewContainer" class="preview-container" style="display: none;"></div>
+
+        <div class="form-group">
+          <label for="captionInput">Lời nhắn / Chú thích:</label>
+          <textarea id="captionInput" rows="3" placeholder="Nhập lời nhắn của bạn ở đây..."></textarea>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" id="cancelBtn" class="btn btn-secondary">Hủy</button>
+          <button type="submit" class="btn btn-primary">Đăng Tải</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
